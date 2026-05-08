@@ -23,6 +23,14 @@ db_url = https://raw.githubusercontent.com/davewongillies/MiSTer-fastfetch/db/db
 1. On your MiSTer run `fastfetch` from the `Scripts` menu or `fastfetch.sh`
    from a shell on your MiSTer.
 
+## Configuration
+
+By default `fastfetch.sh` will look for the configuration file `/media/fat/Scripts/.config/mister.jsonc`.
+If the file doesn't exist `fastfetch.sh` will generate a default file. After that
+you are free to modify the file as you see fit with standard fastfetch
+[configuration](https://github.com/fastfetch-cli/fastfetch/wiki/Configuration)
+syntax.
+
 ## Example output
 
 ```
