@@ -31,6 +31,13 @@ you are free to modify the file as you see fit with standard fastfetch
 [configuration](https://github.com/fastfetch-cli/fastfetch/wiki/Configuration)
 syntax.
 
+If you want `fastfetch` to run everytime you login via ssh or a terminal, run
+the following:
+
+```bash
+ln -s /media/fast/Scripts/fastfetch.sh /etc/profile.d/
+```
+
 ## Example output
 
 ```
