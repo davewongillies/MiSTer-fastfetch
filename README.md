@@ -26,8 +26,8 @@ db_url = https://raw.githubusercontent.com/davewongillies/MiSTer-fastfetch/db/db
 ## Configuration
 
 By default `fastfetch.sh` will look for the configuration file `/media/fat/Scripts/.config/mister.jsonc`.
-If the file doesn't exist `fastfetch.sh` will generate a default file. After that
-you are free to modify the file as you see fit with standard fastfetch
+If the file doesn't exist `fastfetch.sh` will copy the file `mister_stock.jsonc`.
+After that you are free to modify the file as you see fit with standard fastfetch
 [configuration](https://github.com/fastfetch-cli/fastfetch/wiki/Configuration)
 syntax.
 
@@ -45,17 +45,21 @@ ln -s /media/fast/Scripts/fastfetch.sh /etc/profile.d/
       #######      #######          -----------
     ## ##### ###### ##### ##        OS: Buildroot 2021.02.4 armv7l
     #                      #        Host: Terasic DE10-nano
-   #                        #       Kernel: Linux 5.15.1-MiSTer
-   #                        #       Uptime: 8 hours, 17 mins
-   # ###################### #       Shell: bash 5.0.18
-  ## #   #### #  # ####   # ##      Terminal: /dev/pts/2
- #   ##      ######      ##   #     CPU: socfpga (2) @ 1.20 GHz
-#      ######  ##  ######      #    Memory: 117.73 MiB / 492.28 MiB (24%)
-##         ##########         ##    Disk (/media/fat): 25.83 GiB / 59.47 GiB (43%) - exfat
- ###       #   ##   #       ###     Disk (/media/fat/cifs): 6.88 TiB / 10.90 TiB (63%) - cifs
-   #                        #
-   #                        #
- ##          ######          ##
- ##         #      #         ##
-   #########        #########
+   #                        #       CPU: socfpga (2) @ 1.20 GHz
+   #                        #       Loadavg: 1.23, 1.21, 1.26
+   # ###################### #       Memory: 115.37 MiB / 492.28 MiB (23%)
+  ## #   #### #  # ####   # ##      Uptime: 1 hour, 54 mins
+ #   ##      ######      ##   #     Kernel: Linux 5.15.1-MiSTer
+#      ######  ##  ######      #    Shell: bash 5.0.18
+##         ##########         ##    Terminal: /dev/pts/1
+ ###       #   ##   #       ###     Disk (/media/fat): 25.85 GiB / 59.47 GiB (43%) - exfat
+   #                        #       Disk (/media/fat/cifs): 6.84 TiB / 10.90 TiB (63%) - cifs
+   #                        #       Local IP (eth0): 192.168.1.17/24
+ ##          ######          ##     Wifi: XYZ - 802.11n (Wi-Fi 4) - 2.4 GHz (100%)
+ ##         #      #         ##     -----------
+   #########        #########       Keyboard: Logitech K400 Plus
+                                    Gamepad: 8BitDo Ultimate Wireless Controller
+                                    -----------
+                                    Core: TGFX16
+                                    Game: Ginga Fukei Densetsu Sapphire (Japan) (Reprint).cue
 ```

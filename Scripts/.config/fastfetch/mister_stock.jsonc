@@ -1,0 +1,49 @@
+{
+  "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/master/doc/json_schema.json",
+  "logo": {
+      "type": "auto",
+      "source": "/media/fat/Scripts/.config/fastfetch/misterkun.txt"
+  },
+  "modules": [
+    "title",
+    "separator",
+    "os",
+    "host",
+    "cpu",
+    "loadavg",
+    "memory",
+    "uptime",
+    "kernel",
+    "shell",
+    "terminal",
+    {
+        "type": "disk",
+        "folders": "/media/fat:/media/fat/cifs:/media/usb0:/media/usb1:/media/usb2:/media/usb3:/media/usb4:/media/usb5"
+    },
+    "localip",
+    "wifi",
+    "separator",
+    "keyboard",
+    {
+        "type": "gamepad",
+        "ignores": ["Zaparoo"]
+    },
+    "separator",
+    {
+        "type": "command",
+        "key": "Core",
+        "text": "cat /tmp/CORENAME"
+    },
+    {
+        "type": "command",
+        "key": "Game",
+        "text": "basename \"$(cat /tmp/FULLPATH)\""
+    },
+    {
+        "type": "command",
+        "key": "GameID",
+        "text": "cat /tmp/GAMEID"
+    }
+  ]
+}
+
