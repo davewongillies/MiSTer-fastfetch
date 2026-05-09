@@ -37,6 +37,7 @@ jobs:
     - name: Build fastfetch
       env:
         FASTFETCH_VERSION: "2.62.1"
+        SOURCE_DATE_EPOCH: "0"
       run: >
         .github/build.sh
 
