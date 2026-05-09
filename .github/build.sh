@@ -4,7 +4,7 @@ set -euo pipefail
 STARTDIR=$PWD
 
 get() {
-  wget "https://github.com/fastfetch-cli/fastfetch/archive/refs/tags/${FASTFETCH_VERSION}.tar.gz"
+  wget -q "https://github.com/fastfetch-cli/fastfetch/archive/refs/tags/${FASTFETCH_VERSION}.tar.gz"
   tar xf "${FASTFETCH_VERSION}.tar.gz"
   rm -f "${FASTFETCH_VERSION}.tar.gz"
 }
