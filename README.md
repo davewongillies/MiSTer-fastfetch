@@ -6,6 +6,7 @@ on your MiSTer.
 ## Prerequisites
 
 * A network connected MiSTer (Ethernet or wifi)
+* Set `log_file_entry=1` in `MiSTer.ini` to show the currently loaded game
 
 ## Setup
 
