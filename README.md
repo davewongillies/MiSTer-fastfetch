@@ -64,3 +64,8 @@ ln -s /media/fast/Scripts/fastfetch.sh /etc/profile.d/
                                     Core: TGFX16
                                     Game: Ginga Fukei Densetsu Sapphire (Japan) (Reprint).cue
 ```
+
+## Credits
+
+* MiSTer-kun Cat by hewhoisred
+* ASCII art version of MiSTer-kun Cat generated from [baxysquare/mister\_kun](https://github.com/baxysquare/mister_kun/blob/main/8-bit_mister_kun_bw_32x32.png)
