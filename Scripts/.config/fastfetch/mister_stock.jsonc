@@ -37,7 +37,7 @@
     {
         "type": "command",
         "key": "Game",
-        "text": "basename \"$(cat /tmp/FULLPATH)\""
+        "text": "cat /tmp/CURRENTPATH"
     },
     {
         "type": "command",
