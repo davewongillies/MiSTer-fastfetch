@@ -37,7 +37,7 @@
     {
         "type": "command",
         "key": "Game",
-        "text": "cat /tmp/CURRENTPATH"
+        "text": "GAME=\"$(cat /tmp/CURRENTPATH)\" ; echo \"${GAME%.*}\""
     },
     {
         "type": "command",
