@@ -34,20 +34,20 @@ jobs:
           sudo apt update &&
           sudo apt-get install -y -qq
           binfmt-support
-          qemu-user-static
-          autoconf
+          # qemu-user-static
+          # autoconf
           build-essential
-          curl
+          # curl
           gcc
-          git
-          make
+          # git
+          # make
           cmake
-          qemu-user
-          sharutils
-          u-boot-tools
+          # qemu-user
+          # sharutils
+          # u-boot-tools
           pkg-config
           gcc-arm-linux-gnueabihf
-          g++-arm-linux-gnueabihf
+          # g++-arm-linux-gnueabihf
 
       - name: Build fastfetch
         if: steps.cache-check.outputs.cache-hit != 'true' ||

@@ -14,7 +14,6 @@ build() {
   mkdir build ; cd build
   cmake \
     -DCMAKE_C_COMPILER=arm-linux-gnueabihf-gcc \
-    -DCMAKE_CXX_COMPILER=arm-linux-gnueabihf-g++ \
     -DCMAKE_SYSTEM_NAME=Linux \
     -DCMAKE_SYSTEM_PROCESSOR=armv7l \
     -DCMAKE_EXE_LINKER_FLAGS="-static" \
