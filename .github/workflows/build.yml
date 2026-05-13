@@ -34,19 +34,19 @@ jobs:
           sudo apt update &&
           sudo apt-get install -y -qq
           binfmt-support
+          build-essential
+          cmake
+          pkg-config
+          gcc-arm-linux-gnueabihf
           # qemu-user-static
           # autoconf
-          build-essential
           # curl
-          gcc
           # git
+          # gcc
           # make
-          cmake
           # qemu-user
           # sharutils
           # u-boot-tools
-          pkg-config
-          gcc-arm-linux-gnueabihf
           # g++-arm-linux-gnueabihf
 
       - name: Build fastfetch
