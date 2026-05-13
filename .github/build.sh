@@ -21,7 +21,8 @@ build() {
     -DBUILD_SHARED_LIBS=OFF \
     ..
   cmake --build . --target fastfetch
-  cp "$(find . -type f -name fastfetch)"  "${STARTDIR}/Scripts/.config/fastfetch"
+  cp -v "$(find . -type f -name fastfetch)"  "${STARTDIR}/Scripts/.config/fastfetch"
+  "${STARTDIR}/Scripts/.config/fastfetch/fastfetch"
 }
 
 cleanup() {
