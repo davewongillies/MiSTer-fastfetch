@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - main
+  pull_request:
+    branches:
+      - '**'
   workflow_dispatch:
 
 permissions: write-all
@@ -25,7 +28,8 @@ jobs:
           key: fastfetch-${{ env.FASTFETCH_VERSION }}
 
       - name: Install apt-get utilities
-        if: steps.cache-check.outputs.cache-hit != 'true'
+        if: steps.cache-check.outputs.cache-hit != 'true' ||
+          github.event_name == 'pull_request'
         run: >
           sudo apt update &&
           sudo apt-get install -y -qq
@@ -46,12 +50,15 @@ jobs:
           g++-arm-linux-gnueabihf
 
       - name: Build fastfetch
-        if: steps.cache-check.outputs.cache-hit != 'true'
+        if: steps.cache-check.outputs.cache-hit != 'true' ||
+          github.event_name == 'pull_request'
         env:
           SOURCE_DATE_EPOCH: "0"
-        run: >
-          .github/build.sh
-          echo "fastfetch-${{ env.FASTFETCH_VERSION }}" > /tmp/build-status.txt
+        run: .github/build.sh
+
+      - name: Update cache version
+        if: steps.cache-check.outputs.cache-hit != 'true'
+        run: echo "fastfetch-${{ env.FASTFETCH_VERSION }}" > /tmp/build-status.txt
 
       - name: Commit and push changes
         if: steps.cache-check.outputs.cache-hit != 'true'
