@@ -12,7 +12,7 @@ on:
 permissions: write-all
 
 jobs:
-  build_fastfetch:
+  Build:
     runs-on: ubuntu-latest
     env:
       FASTFETCH_VERSION: "2.62.1"
@@ -57,17 +57,21 @@ jobs:
         run: .github/build.sh
 
       - name: Update cache version
-        if: steps.cache-check.outputs.cache-hit != 'true'
-        run: echo "fastfetch-${{ env.FASTFETCH_VERSION }}" > /tmp/build-status.txt
+        if: steps.cache-check.outputs.cache-hit != 'true' &&
+          github.ref == 'refs/heads/main'
+        run: >
+          echo "fastfetch-${{ env.FASTFETCH_VERSION }}" > /tmp/build-status.txt
 
       - name: Commit and push changes
-        if: steps.cache-check.outputs.cache-hit != 'true'
+        if: steps.cache-check.outputs.cache-hit != 'true' &&
+          github.ref == 'refs/heads/main'
         uses: devops-infra/action-commit-push@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           commit_message: Updated Scripts directory
 
       - name: Build Custom Database for MiSTer Downloader
+        if: github.ref == 'refs/heads/main'
         run: >
           sudo chown -R runner .git ;
           set -o pipefail
