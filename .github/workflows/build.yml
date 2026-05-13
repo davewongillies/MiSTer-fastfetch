@@ -38,7 +38,7 @@ jobs:
           cmake
           pkg-config
           gcc-arm-linux-gnueabihf
-          # qemu-user-static
+          qemu-user-static
           # autoconf
           # curl
           # git
