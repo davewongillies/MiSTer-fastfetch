@@ -40,7 +40,7 @@ jobs:
           pkg-config
           qemu-user-static
 
-      - name: Build fastfetch
+      - name: Build
         if: steps.cache-check.outputs.cache-hit != 'true' ||
           github.event_name == 'pull_request'
         env:
