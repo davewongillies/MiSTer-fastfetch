@@ -4,12 +4,15 @@ on:
   push:
     branches:
       - main
+  pull_request:
+    branches:
+      - '**'
   workflow_dispatch:
 
 permissions: write-all
 
 jobs:
-  build_fastfetch:
+  Build:
     runs-on: ubuntu-latest
     env:
       FASTFETCH_VERSION: "2.62.1"
@@ -25,42 +28,61 @@ jobs:
           key: fastfetch-${{ env.FASTFETCH_VERSION }}
 
       - name: Install apt-get utilities
-        if: steps.cache-check.outputs.cache-hit != 'true'
+        if: steps.cache-check.outputs.cache-hit != 'true' ||
+          github.event_name == 'pull_request'
         run: >
           sudo apt update &&
           sudo apt-get install -y -qq
           binfmt-support
-          qemu-user-static
-          autoconf
           build-essential
-          curl
-          gcc
-          git
-          make
           cmake
-          qemu-user
-          sharutils
-          u-boot-tools
-          pkg-config
           gcc-arm-linux-gnueabihf
-          g++-arm-linux-gnueabihf
+          pkg-config
+          qemu-user-static
 
-      - name: Build fastfetch
-        if: steps.cache-check.outputs.cache-hit != 'true'
+      - name: Build
+        if: steps.cache-check.outputs.cache-hit != 'true' ||
+          github.event_name == 'pull_request'
         env:
           SOURCE_DATE_EPOCH: "0"
+        run: |
+          set -euo pipefail
+          STARTDIR="$PWD"
+          cd /tmp
+          wget -q "https://github.com/fastfetch-cli/fastfetch/archive/refs/tags/${FASTFETCH_VERSION}.tar.gz"
+          tar xf "${FASTFETCH_VERSION}.tar.gz"
+          cd "fastfetch-${FASTFETCH_VERSION}"
+          mkdir build
+          cd build
+          cmake \
+            -DCMAKE_C_COMPILER=arm-linux-gnueabihf-gcc \
+            -DCMAKE_SYSTEM_NAME=Linux \
+            -DCMAKE_SYSTEM_PROCESSOR=armv7l \
+            -DCMAKE_EXE_LINKER_FLAGS="-static" \
+            -DBUILD_SHARED_LIBS=OFF \
+            ..
+
+          cmake --build . --target fastfetch
+
+          ./fastfetch && cp -v "$(find . -type f -name fastfetch)" \
+            "${STARTDIR}/Scripts/.config/fastfetch"
+
+      - name: Update cache version
+        if: steps.cache-check.outputs.cache-hit != 'true' &&
+          github.ref == 'refs/heads/main'
         run: >
-          .github/build.sh
           echo "fastfetch-${{ env.FASTFETCH_VERSION }}" > /tmp/build-status.txt
 
       - name: Commit and push changes
-        if: steps.cache-check.outputs.cache-hit != 'true'
+        if: steps.cache-check.outputs.cache-hit != 'true' &&
+          github.ref == 'refs/heads/main'
         uses: devops-infra/action-commit-push@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           commit_message: Updated Scripts directory
 
       - name: Build Custom Database for MiSTer Downloader
+        if: github.ref == 'refs/heads/main'
         run: >
           sudo chown -R runner .git ;
           set -o pipefail
