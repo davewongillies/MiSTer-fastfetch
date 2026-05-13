@@ -36,25 +36,36 @@ jobs:
           binfmt-support
           build-essential
           cmake
-          pkg-config
           gcc-arm-linux-gnueabihf
+          pkg-config
           qemu-user-static
-          # autoconf
-          # curl
-          # git
-          # gcc
-          # make
-          # qemu-user
-          # sharutils
-          # u-boot-tools
-          # g++-arm-linux-gnueabihf
 
       - name: Build fastfetch
         if: steps.cache-check.outputs.cache-hit != 'true' ||
           github.event_name == 'pull_request'
         env:
           SOURCE_DATE_EPOCH: "0"
-        run: .github/build.sh
+        run: |
+          set -euo pipefail
+          STARTDIR="$PWD"
+          cd /tmp
+          wget -q "https://github.com/fastfetch-cli/fastfetch/archive/refs/tags/${FASTFETCH_VERSION}.tar.gz"
+          tar xf "${FASTFETCH_VERSION}.tar.gz"
+          cd "fastfetch-${FASTFETCH_VERSION}"
+          mkdir build
+          cd build
+          cmake \
+            -DCMAKE_C_COMPILER=arm-linux-gnueabihf-gcc \
+            -DCMAKE_SYSTEM_NAME=Linux \
+            -DCMAKE_SYSTEM_PROCESSOR=armv7l \
+            -DCMAKE_EXE_LINKER_FLAGS="-static" \
+            -DBUILD_SHARED_LIBS=OFF \
+            ..
+
+          cmake --build . --target fastfetch
+
+          ./fastfetch && cp -v "$(find . -type f -name fastfetch)" \
+            "${STARTDIR}/Scripts/.config/fastfetch"
 
       - name: Update cache version
         if: steps.cache-check.outputs.cache-hit != 'true' &&
