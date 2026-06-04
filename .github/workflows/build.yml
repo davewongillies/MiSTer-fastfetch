@@ -15,7 +15,7 @@ jobs:
   Build:
     runs-on: ubuntu-latest
     env:
-      FASTFETCH_VERSION: "2.62.1"
+      FASTFETCH_VERSION: "2.64.0"
 
     steps:
       - uses: actions/checkout@v4
@@ -60,6 +60,25 @@ jobs:
             -DCMAKE_SYSTEM_PROCESSOR=armv7l \
             -DCMAKE_EXE_LINKER_FLAGS="-static" \
             -DBUILD_SHARED_LIBS=OFF \
+            -DMODULE_DISABLE_BATTERY=ON \
+            -DMODULE_DISABLE_BRIGHTNESS=ON \
+            -DMODULE_DISABLE_BTRFS=ON \
+            -DMODULE_DISABLE_CAMERA=ON \
+            -DMODULE_DISABLE_CODEC=ON \
+            -DMODULE_DISABLE_DE=ON \
+            -DMODULE_DISABLE_MEDIA=ON \
+            -DMODULE_DISABLE_MONITOR=ON \
+            -DMODULE_DISABLE_OPENCL=ON \
+            -DMODULE_DISABLE_OPENGL=ON \
+            -DMODULE_DISABLE_PACKAGES=ON \
+            -DMODULE_DISABLE_PLAYER=ON \
+            -DMODULE_DISABLE_POWERADAPTER=ON \
+            -DMODULE_DISABLE_TPM=ON \
+            -DMODULE_DISABLE_VULKAN=ON \
+            -DMODULE_DISABLE_WALLPAPER=ON \
+            -DMODULE_DISABLE_WM=ON \
+            -DMODULE_DISABLE_WMTHEME=ON \
+            -DMODULE_DISABLE_ZPOOL=ON \
             ..
 
           cmake --build . --target fastfetch
