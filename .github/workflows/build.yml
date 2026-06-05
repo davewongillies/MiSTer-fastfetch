@@ -15,7 +15,7 @@ jobs:
   Build:
     runs-on: ubuntu-latest
     env:
-      FASTFETCH_VERSION: "2.64.0"
+      FASTFETCH_VERSION: "2.64.1"
 
     steps:
       - uses: actions/checkout@v4
@@ -60,6 +60,7 @@ jobs:
             -DCMAKE_SYSTEM_PROCESSOR=armv7l \
             -DCMAKE_EXE_LINKER_FLAGS="-static" \
             -DBUILD_SHARED_LIBS=OFF \
+            -DPACKAGES_REMOVE_DISABLED=ON \
             -DMODULE_DISABLE_BATTERY=ON \
             -DMODULE_DISABLE_BRIGHTNESS=ON \
             -DMODULE_DISABLE_BTRFS=ON \
@@ -85,6 +86,9 @@ jobs:
 
           ./fastfetch && cp -v "$(find . -type f -name fastfetch)" \
             "${STARTDIR}/Scripts/.config/fastfetch"
+          ./fastfetch --version
+          ./fastfetch --list-features
+          ./fastfetch --list-modules
 
       - name: Update cache version
         if: steps.cache-check.outputs.cache-hit != 'true' &&
