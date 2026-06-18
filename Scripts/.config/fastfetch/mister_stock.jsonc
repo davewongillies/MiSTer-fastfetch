@@ -37,7 +37,7 @@
     {
         "type": "command",
         "key": "Game",
-        "text": "GAME=\"$(cat /tmp/CURRENTPATH)\" ; echo \"${GAME%.*}\""
+        "text": "GAME=\"$(if [ \"$(cat /tmp/CURRENTPATH)\" != \"..\" ]; then cat /tmp/CURRENTPATH; else basename \"$(cat /tmp/ACTIVEGAME)\"; fi)\" ; echo \"${GAME%.*}\""
     },
     {
         "type": "command",
