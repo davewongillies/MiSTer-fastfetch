@@ -36,7 +36,7 @@ If you want `fastfetch` to run everytime you login via ssh or a terminal, run
 the following:
 
 ```bash
-ln -s /media/fast/Scripts/fastfetch.sh /etc/profile.d/
+ln -s /media/fat/Scripts/fastfetch.sh /etc/profile.d/
 ```
 
 ## Example output
