@@ -7,7 +7,11 @@
   "modules": [
     "title",
     "separator",
-    "os",
+    {
+        "type": "command",
+        "key": "OS",
+        "text": "echo MiSTer v$(cat /MiSTer.version)"
+    },
     "host",
     "cpu",
     "loadavg",
