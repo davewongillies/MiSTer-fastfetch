@@ -28,6 +28,7 @@
     "wifi",
     "separator",
     "keyboard",
+    "mouse",
     {
         "type": "gamepad",
         "ignores": ["Zaparoo"]
