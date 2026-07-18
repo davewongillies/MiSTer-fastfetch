@@ -41,29 +41,7 @@ ln -s /media/fat/Scripts/fastfetch.sh /etc/profile.d/
 
 ## Example output
 
-```
-        ###          ###            root@MiSTer
-      #######      #######          -----------
-    ## ##### ###### ##### ##        OS: Buildroot 2021.02.4 armv7l
-    #                      #        Host: Terasic DE10-nano
-   #                        #       CPU: socfpga (2) @ 1.20 GHz
-   #                        #       Loadavg: 1.23, 1.21, 1.26
-   # ###################### #       Memory: 115.37 MiB / 492.28 MiB (23%)
-  ## #   #### #  # ####   # ##      Uptime: 1 hour, 54 mins
- #   ##      ######      ##   #     Kernel: Linux 5.15.1-MiSTer
-#      ######  ##  ######      #    Shell: bash 5.0.18
-##         ##########         ##    Terminal: /dev/pts/1
- ###       #   ##   #       ###     Disk (/media/fat): 25.85 GiB / 59.47 GiB (43%) - exfat
-   #                        #       Disk (/media/fat/cifs): 6.84 TiB / 10.90 TiB (63%) - cifs
-   #                        #       Local IP (eth0): 192.168.1.17/24
- ##          ######          ##     Wifi: XYZ - 802.11n (Wi-Fi 4) - 2.4 GHz (100%)
- ##         #      #         ##     -----------
-   #########        #########       Keyboard: Logitech K400 Plus
-                                    Gamepad: 8BitDo Ultimate Wireless Controller
-                                    -----------
-                                    Core: TGFX16
-                                    Game: Ginga Fukei Densetsu Sapphire (Japan) (Reprint).cue
-```
+![Screenshot of a fastfetch running on a mister](./.github/screenshot.png)
 
 ## Credits
 
