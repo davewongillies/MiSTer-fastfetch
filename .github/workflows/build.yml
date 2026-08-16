@@ -55,10 +55,11 @@ jobs:
           mkdir build
           cd build
           cmake \
+            -DCMAKE_BUILD_TYPE=Release \
             -DCMAKE_C_COMPILER=arm-linux-gnueabihf-gcc \
             -DCMAKE_SYSTEM_NAME=Linux \
             -DCMAKE_SYSTEM_PROCESSOR=armv7l \
-            -DCMAKE_EXE_LINKER_FLAGS="-static" \
+            -DCMAKE_EXE_LINKER_FLAGS="-static -Wl,--build-id=none" \
             -DBUILD_SHARED_LIBS=OFF \
             -DPACKAGES_REMOVE_DISABLED=ON \
             -DMODULE_DISABLE_BATTERY=ON \
@@ -89,6 +90,10 @@ jobs:
           ./fastfetch --version
           ./fastfetch --list-features
           ./fastfetch --list-modules
+
+          file ./fastfetch
+          arm-linux-gnueabihf-strip ./fastfetch
+          file ./fastfetch
 
       - name: Update cache version
         if: steps.cache-check.outputs.cache-hit != 'true' &&
