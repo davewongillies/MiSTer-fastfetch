@@ -15,14 +15,14 @@ jobs:
   Build:
     runs-on: ubuntu-latest
     env:
-      FASTFETCH_VERSION: "2.64.1"
+      FASTFETCH_VERSION: "2.67.1"
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Check version cache
         id: cache-check
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: /tmp/build-status.txt
           key: fastfetch-${{ env.FASTFETCH_VERSION }}
