@@ -85,15 +85,13 @@ jobs:
 
           cmake --build . --target fastfetch
 
-          ./fastfetch && cp -v "$(find . -type f -name fastfetch)" \
-            "${STARTDIR}/Scripts/.config/fastfetch"
+          arm-linux-gnueabihf-strip ./fastfetch
+          file ./fastfetch
+
+          ./fastfetch && cp -v fastfetch "${STARTDIR}/Scripts/.config/fastfetch"
           ./fastfetch --version
           ./fastfetch --list-features
           ./fastfetch --list-modules
-
-          file ./fastfetch
-          arm-linux-gnueabihf-strip ./fastfetch
-          file ./fastfetch
 
       - name: Update cache version
         if: steps.cache-check.outputs.cache-hit != 'true' &&
