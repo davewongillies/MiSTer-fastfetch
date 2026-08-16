@@ -15,14 +15,14 @@ jobs:
   Build:
     runs-on: ubuntu-latest
     env:
-      FASTFETCH_VERSION: "2.64.1"
+      FASTFETCH_VERSION: "2.67.1"
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Check version cache
         id: cache-check
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: /tmp/build-status.txt
           key: fastfetch-${{ env.FASTFETCH_VERSION }}
@@ -55,10 +55,11 @@ jobs:
           mkdir build
           cd build
           cmake \
+            -DCMAKE_BUILD_TYPE=Release \
             -DCMAKE_C_COMPILER=arm-linux-gnueabihf-gcc \
             -DCMAKE_SYSTEM_NAME=Linux \
             -DCMAKE_SYSTEM_PROCESSOR=armv7l \
-            -DCMAKE_EXE_LINKER_FLAGS="-static" \
+            -DCMAKE_EXE_LINKER_FLAGS="-static -Wl,--build-id=none" \
             -DBUILD_SHARED_LIBS=OFF \
             -DPACKAGES_REMOVE_DISABLED=ON \
             -DMODULE_DISABLE_BATTERY=ON \
@@ -84,8 +85,10 @@ jobs:
 
           cmake --build . --target fastfetch
 
-          ./fastfetch && cp -v "$(find . -type f -name fastfetch)" \
-            "${STARTDIR}/Scripts/.config/fastfetch"
+          arm-linux-gnueabihf-strip ./fastfetch
+          file ./fastfetch
+
+          ./fastfetch && cp -v fastfetch "${STARTDIR}/Scripts/.config/fastfetch"
           ./fastfetch --version
           ./fastfetch --list-features
           ./fastfetch --list-modules
