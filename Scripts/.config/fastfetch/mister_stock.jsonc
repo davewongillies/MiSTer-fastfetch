@@ -28,7 +28,13 @@
     "wifi",
     "separator",
     "keyboard",
-    "mouse",
+    {
+        "type": "mouse",
+        "ignores": [
+          "mrext-mouse",
+          "mrext-touchpad"
+        ]
+    },
     {
         "type": "gamepad",
         "ignores": ["Zaparoo"]
